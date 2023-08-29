@@ -1,5 +1,5 @@
-//Computer picks randomly between rock, paper or scissors
-const compArray =["rock", "paper", "scissors"]
+//Computer picks randomly between rock, paper, scissors, lizard, or Spock
+const compArray =['rock', 'paper', 'scissors', 'lizard', 'Spock']
 
 function computerSelection() {
     return compArray[Math.floor(Math.random() * compArray.length)]
@@ -8,11 +8,13 @@ function computerSelection() {
 let compWeapon = computerSelection()
 
 
-//User picks rock, paper, or scissors
+//User picks rock, paper, scissors, lizard, or Spock
 let userWeapon;
 const rock = document.querySelector('.rock');
 const paper = document.querySelector('.paper');
 const scissors = document.querySelector('.scissors');
+const lizard = document.querySelector('.lizard');
+const spock = document.querySelector('.spock')
 const button = document.querySelectorAll('button');
 
 rock.addEventListener('click', () => {
@@ -27,34 +29,77 @@ scissors.addEventListener('click', () => {
     userWeapon = 'scissors'
 } )
 
+lizard.addEventListener('click', () => {
+    userWeapon = 'lizard'
+})
+
+spock.addEventListener('click', () => {
+    userWeapon = 'Spock'
+})
 
 //use if else statements to determine a winner
 let winner;
 
 function checkWinner() {
-    if (userWeapon==='rock'){
+    if (userWeapon==='rock') {
         if (compWeapon==='rock') {
             winner='tie'
-        } else if (compWeapon ==='scissors') {
+        } else if (compWeapon ==='paper') {
+            winner = 'comp'
+        } else if (compWeapon==='scissors') {
             winner = 'user'
-        } else if (compWeapon==='paper') {
+        } else if (compWeapon === 'lizard') {
+            winner = 'user'
+        } else if (compWeapon === 'Spock') {
             winner = 'comp'
         }
-    } else if (userWeapon ==='paper'){
-        if (compWeapon==='paper') {
-            winner='tie'
-        } else if (compWeapon==='rock') {
+    } else if (userWeapon ==='paper') {
+        if (compWeapon==='rock') {
+            winner='user'
+        } else if (compWeapon==='paper') {
+            winner = 'tie'
+        } else if (compWeapon === 'scissors') {
+            winner = 'comp'
+        } else if (compWeapon === 'lizard') {
+            winner = 'comp'
+        } else if (compWeapon === 'Spock') {
+            winner = 'user'
+        }
+    } else if (userWeapon==='scissors') {
+        if (compWeapon==='rock') {
+            winner='comp'
+        } else if (compWeapon==='paper'){
+            winner = 'user'
+        } else if (compWeapon === 'scissors') {
+            winner = 'tie'
+        } else if (compWeapon === 'lizard') {
+            winner = 'user'
+        } else if (compWeapon === 'Spock') {
+            winner = 'comp'
+        }
+    } else if (userWeapon ==='lizard') {
+        if (compWeapon === 'rock') {
+            winner = 'comp'
+        } else if (compWeapon === 'paper') {
             winner = 'user'
         } else if (compWeapon === 'scissors') {
             winner = 'comp'
-        }
-    } else if (userWeapon==='scissors'){
-        if (compWeapon==='scissors') {
-            winner='tie'
-        } else if (compWeapon==='paper'){
+        }  else if (compWeapon === 'lizard') {
+            winner = 'tie'
+        } else if (compWeapon === 'Spock') {
             winner = 'user'
-        } else if (compWeapon === 'rock') {
+        }
+    } else if (userWeapon ==='Spock') {
+        if (compWeapon === 'rock') {
+            winner = 'user'
+        } else if (compWeapon === 'paper') {
             winner = 'comp'
+        } else if (compWeapon === 'scissors') {
+            winner = 'user'
+        }  else if (compWeapon === 'lizard') {
+            winner = 'comp'
+        } else if (compWeapon === 'Spock') {
+            winner = 'tie'
         }
     }
 }
