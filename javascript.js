@@ -79,13 +79,36 @@ function displayWinner() {
 }
 
 //display win-loss count in .win-loss-count
+let compWins = 0;
+let userWins = 0;
+const compWinDisplay = document.querySelector('.loss')
+const userWinDisplay = document.querySelector('.win')
 
+function countWinner() {
+    if (winner === 'comp') {
+        return (++compWins);
+    } else if (winner=== 'user') {
+        return (++userWins);
+    } else {
+        return userWins;
+        return compWins;
+    }
+}
+
+function displayWinCounts() {
+    compWinDisplay.textContent = compWins;
+    userWinDisplay.textContent = userWins;
+}
+
+displayWinCounts()
 
 //Put it all together
 for (let i= 0; i < button.length;i++) {
     button[i].addEventListener("click", () => {
         checkWinner();
         displayWinner();
+        countWinner();
+        displayWinCounts();
         compWeapon = computerSelection();
     })
 }
