@@ -7,7 +7,6 @@ function computerSelection() {
 
 let compWeapon = computerSelection()
 
-console.log(compWeapon)
 
 //User picks rock, paper, or scissors
 let userWeapon;
@@ -17,31 +16,20 @@ const scissors = document.querySelector('.scissors');
 const button = document.querySelectorAll('button');
 
 rock.addEventListener('click', () => {
-    userWeapon = 'rock';
-    console.log(userWeapon)
+    userWeapon = 'rock'
 } )
 
 paper.addEventListener('click', () => {
-    userWeapon = 'paper';
-    console.log(userWeapon)
+    userWeapon = 'paper'
 } )
 
 scissors.addEventListener('click', () => {
-    userWeapon = 'scissors';
-    console.log(userWeapon)
+    userWeapon = 'scissors'
 } )
 
 
 //use if else statements to determine a winner
 let winner;
-
-for (let i= 0; i < button.length;i++) {
-    button[i].addEventListener("click", () => {
-        checkWinner();
-        console.log(winner)
-    })
-}
-
 
 function checkWinner() {
     if (userWeapon==='rock'){
@@ -71,9 +59,33 @@ function checkWinner() {
     }
 }
 
-
-
-
 //display a message in .win-loss-message to show winner
+const para = document.querySelector('.win-loss-message')
+
+function proper(word) {
+    let w = word.charAt(0).toUpperCase();
+    let ord = word.slice(1);
+    return w+ord
+}
+
+function displayWinner() {
+    if (winner==='comp') {
+        para.textContent = `${(proper(compWeapon))} beats ${userWeapon}. Computer wins.`
+    } else if (winner==='tie') {
+        para.textContent = `You both picked ${userWeapon}. There are no winners today...`
+    } else if (winner==='user') {
+        para.textContent = `${(proper(userWeapon))} beats ${compWeapon}! You win!`
+    }
+}
 
 //display win-loss count in .win-loss-count
+
+
+//Put it all together
+for (let i= 0; i < button.length;i++) {
+    button[i].addEventListener("click", () => {
+        checkWinner();
+        displayWinner();
+        compWeapon = computerSelection();
+    })
+}
